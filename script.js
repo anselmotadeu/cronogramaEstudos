@@ -1,3 +1,35 @@
+// Solicitar permissão para notificações
+if (Notification.permission === 'default') {
+    Notification.requestPermission().then(permission => {
+        if (permission === 'granted') {
+            console.log('Notificações permitidas');
+            // Exibir uma notificação de teste após a permissão ser concedida
+            new Notification('Permissão Concedida', {
+                body: 'Agora você receberá notificações!',
+                icon: 'https://via.placeholder.com/128' // Substitua por um ícone personalizado, se desejar
+            });
+        } else {
+            console.log('Permissão para notificações não foi concedida.');
+        }
+    });
+} else if (Notification.permission === 'granted') {
+    console.log('Notificações já estavam permitidas');
+} else {
+    console.log('Permissão para notificações não foi concedida anteriormente.');
+}
+
+function showNotification(title, body) {
+    if (Notification.permission === 'granted') {
+        console.log('Tentando mostrar notificação:', title); // Log de depuração
+        new Notification(title, {
+            body: body,
+            icon: 'https://via.placeholder.com/128' // Substitua por um ícone personalizado, se desejar
+        });
+    } else {
+        console.log('Permissão para notificações não foi concedida.');
+    }
+}
+
 document.addEventListener("DOMContentLoaded", function() {
     const addSubjectBtn = document.getElementById("add-subject-btn");
     const modal = document.getElementById("add-subject-modal");
@@ -5,6 +37,9 @@ document.addEventListener("DOMContentLoaded", function() {
     const addSubjectForm = document.getElementById("add-subject-form");
     const scheduleTableBody = document.querySelector("#schedule tbody");
     const completedTableBody = document.querySelector("#completed tbody");
+
+    // Não mostrar notificação de teste aqui ainda
+    // showNotification('Teste de Notificação', 'Se você está vendo isso, as notificações estão funcionando!');
 
     const dateInput = document.getElementById("date");
     const dayInput = document.getElementById("day");
@@ -21,7 +56,7 @@ document.addEventListener("DOMContentLoaded", function() {
         return string.charAt(0).toUpperCase() + string.slice(1);
     }
 
-    updateDashboard()
+    updateDashboard();
     // Carregar as atividades salvas ao iniciar a aplicação
     loadActivities();
 
@@ -71,7 +106,10 @@ document.addEventListener("DOMContentLoaded", function() {
 
         modal.style.display = "none";
         addSubjectForm.reset();
-        updateDashboard()
+        updateDashboard();
+
+        // Adicionar a notificação aqui
+        showNotification('Nova Atividade Adicionada', `Atividade "${activity}" adicionada na plataforma ${platform}`);
     });
 
     function addActivityToTable(activityData, isCompleted = false) {
@@ -93,7 +131,7 @@ document.addEventListener("DOMContentLoaded", function() {
             } else {
                 moveToSchedule(row);
             }
-            updateDashboard()
+            updateDashboard();
         });
 
         if (isCompleted) {
@@ -102,7 +140,7 @@ document.addEventListener("DOMContentLoaded", function() {
             scheduleTableBody.appendChild(row);
         }
 
-        updateDashboard()
+        updateDashboard();
     }
 
     function saveActivity(activityData) {
@@ -113,7 +151,6 @@ document.addEventListener("DOMContentLoaded", function() {
 
     function getActivitiesFromStorage() {
         return JSON.parse(localStorage.getItem('activities')) || [];
-        updateDashboard(); // Atualiza o dashboard após carregar as atividades
     }
 
     function loadActivities() {
@@ -127,6 +164,18 @@ document.addEventListener("DOMContentLoaded", function() {
         });
         updateDashboard(); // Atualiza o dashboard após carregar as atividades
     }
+
+    function remindUncompletedTasks() {
+        const activities = getActivitiesFromStorage();
+        activities.forEach(activity => {
+            if (!activity.completed) {
+                showNotification('Lembrete', `Você ainda não concluiu a atividade: "${activity.activity}" na plataforma ${activity.platform}`);
+            }
+        });
+    }
+    
+    // Chamar a função de lembrete ao carregar a página
+    remindUncompletedTasks();    
 
     function updateActivityInStorage() {
         const allActivities = [];
