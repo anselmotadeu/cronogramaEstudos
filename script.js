@@ -30,6 +30,31 @@ function showNotification(title, body) {
     }
 }
 
+function filterActivities() {
+    const searchTerm = document.getElementById("search-bar").value.toLowerCase();
+    const rows = document.querySelectorAll("#schedule tbody tr, #completed tbody tr");
+
+    rows.forEach(row => {
+        const activityText = row.querySelector("td:nth-child(3)").textContent.toLowerCase();
+        const platformText = row.querySelector("td:nth-child(4)").textContent.toLowerCase();
+        const dateText = row.querySelector("td:nth-child(1)").textContent.toLowerCase();
+        const dayText = row.querySelector("td:nth-child(2)").textContent.toLowerCase();
+        const statusText = row.querySelector("input[type='checkbox']").checked ? "concluída" : "pendente";
+
+        if (
+            activityText.includes(searchTerm) ||
+            platformText.includes(searchTerm) ||
+            dateText.includes(searchTerm) ||
+            dayText.includes(searchTerm) ||
+            statusText.includes(searchTerm)
+        ) {
+            row.style.display = "";
+        } else {
+            row.style.display = "none";
+        }
+    });
+}
+
 document.addEventListener("DOMContentLoaded", function() {
     const addSubjectBtn = document.getElementById("add-subject-btn");
     const modal = document.getElementById("add-subject-modal");
@@ -37,6 +62,8 @@ document.addEventListener("DOMContentLoaded", function() {
     const addSubjectForm = document.getElementById("add-subject-form");
     const scheduleTableBody = document.querySelector("#schedule tbody");
     const completedTableBody = document.querySelector("#completed tbody");
+
+    document.getElementById("search-bar").addEventListener("input", filterActivities);
 
     // Não mostrar notificação de teste aqui ainda
     // showNotification('Teste de Notificação', 'Se você está vendo isso, as notificações estão funcionando!');

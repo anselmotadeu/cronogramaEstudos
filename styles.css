@@ -279,3 +279,22 @@ footer {
         flex: 1 1 100%;
     }
 }
+
+/* Estilo da barra de pesquisa */
+#search-bar {
+    width: 100%;
+    max-width: 400px;
+    padding: 10px 20px;
+    margin-bottom: 20px;
+    font-size: 16px;
+    border: 2px solid #007bff;
+    border-radius: 25px;
+    outline: none;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease-in-out;
+}
+
+#search-bar:focus {
+    border-color: #0056b3;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+}
