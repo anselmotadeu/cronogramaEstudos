@@ -21,6 +21,7 @@ document.addEventListener("DOMContentLoaded", function() {
         return string.charAt(0).toUpperCase() + string.slice(1);
     }
 
+    updateDashboard()
     // Carregar as atividades salvas ao iniciar a aplicação
     loadActivities();
 
@@ -70,6 +71,7 @@ document.addEventListener("DOMContentLoaded", function() {
 
         modal.style.display = "none";
         addSubjectForm.reset();
+        updateDashboard()
     });
 
     function addActivityToTable(activityData, isCompleted = false) {
@@ -91,6 +93,7 @@ document.addEventListener("DOMContentLoaded", function() {
             } else {
                 moveToSchedule(row);
             }
+            updateDashboard()
         });
 
         if (isCompleted) {
@@ -98,6 +101,8 @@ document.addEventListener("DOMContentLoaded", function() {
         } else {
             scheduleTableBody.appendChild(row);
         }
+
+        updateDashboard()
     }
 
     function saveActivity(activityData) {
@@ -108,6 +113,7 @@ document.addEventListener("DOMContentLoaded", function() {
 
     function getActivitiesFromStorage() {
         return JSON.parse(localStorage.getItem('activities')) || [];
+        updateDashboard(); // Atualiza o dashboard após carregar as atividades
     }
 
     function loadActivities() {
@@ -119,6 +125,7 @@ document.addEventListener("DOMContentLoaded", function() {
                 addActivityToTable(activityData);
             }
         });
+        updateDashboard(); // Atualiza o dashboard após carregar as atividades
     }
 
     function updateActivityInStorage() {
@@ -138,6 +145,7 @@ document.addEventListener("DOMContentLoaded", function() {
         });
 
         localStorage.setItem('activities', JSON.stringify(allActivities));
+        updateDashboard(); // Atualiza o dashboard após atualizar o localStorage
     }
 
     function moveToCompleted(row) {
@@ -170,4 +178,69 @@ document.addEventListener("DOMContentLoaded", function() {
             return minuteText;
         }
     }
+
+    function updateDashboard() {
+        const activities = getActivitiesFromStorage();
+        let totalMinutes = 0;
+        let completedTasks = 0;
+        let pendingTasks = 0;
+        const platformTime = {};
+    
+        activities.forEach(activity => {
+            const [hours, minutes] = parseTime(activity.hours);
+            const totalTimeInMinutes = (hours * 60) + minutes;
+            totalMinutes += totalTimeInMinutes;
+    
+            if (activity.completed) {
+                completedTasks++;
+            } else {
+                pendingTasks++;
+            }
+    
+            // Unificar o tempo por plataforma
+            if (!platformTime[activity.platform]) {
+                platformTime[activity.platform] = 0;
+            }
+            platformTime[activity.platform] += totalTimeInMinutes;
+        });
+    
+        document.getElementById('total-hours').textContent = formatTotalTime(totalMinutes);
+        document.getElementById('completed-tasks').textContent = completedTasks;
+        document.getElementById('pending-tasks').textContent = pendingTasks;
+    
+        const platformTimeList = document.getElementById('platform-time');
+        platformTimeList.innerHTML = '';
+    
+        for (const platform in platformTime) {
+            const li = document.createElement('li');
+            li.innerHTML = `<span>${platform}:</span> <span>${formatTotalTime(platformTime[platform])}</span>`;
+            platformTimeList.appendChild(li);
+        }
+    }
+    
+    function parseTime(timeString) {
+        const parts = timeString.split(' ');
+        const hours = parseFloat(parts[0]) || 0;
+        const minutes = (parts.length > 3) ? parseFloat(parts[3]) || 0 : 0;
+        return [hours, minutes];
+    }
+    
+    function formatTotalTime(totalMinutes) {
+        const hours = Math.floor(totalMinutes / 60);
+        const minutes = totalMinutes % 60;
+    
+        let hourText = hours === 1 ? `${hours} hora` : `${hours} horas`;
+        let minuteText = minutes === 1 ? `${minutes} minuto` : `${minutes} minutos`;
+    
+        if (hours === 0) hourText = '';
+        if (minutes === 0) minuteText = '';
+    
+        if (hourText && minuteText) {
+            return `${hourText} e ${minuteText}`;
+        } else if (hourText) {
+            return hourText;
+        } else {
+            return minuteText;
+        }
+    }               
 });
