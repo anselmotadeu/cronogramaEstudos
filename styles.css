@@ -178,3 +178,27 @@ footer {
     text-align: center;
     padding: 10px 0;
 }
+
+#add-subject-btn {
+    background-color: #007bff;
+    color: white;
+    padding: 10px 20px;
+    border: 2px solid #0056b3; /* Borda adicionada */
+    cursor: pointer;
+    font-size: 16px;
+    border-radius: 5px;
+    position: absolute;
+    right: 20px;
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+#add-subject-btn:hover {
+    background-color: #0056b3;
+    border-color: #004085; /* Mudança na borda ao passar o mouse */
+}
+
+#day[readonly] {
+    background-color: #e9ecef;
+    cursor: not-allowed;
+}
