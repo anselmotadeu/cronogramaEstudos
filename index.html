@@ -9,32 +9,75 @@
 <body>
     <header>
         <h1>Cronograma de Estudos</h1>
+        <button id="add-subject-btn">Adicionar Matéria</button>
     </header>
 
     <main>
-        <table id="schedule">
-            <thead>
-                <tr>
-                    <th>Dia</th>
-                    <th>Atividade</th>
-                    <th>Conclusão</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td>Segunda</td>
-                    <td>Inglês - GoFluent (1h) / Programação - Dio Global (1h)</td>
-                    <td><input type="checkbox"></td>
-                </tr>
-                <tr>
-                    <td>Terça</td>
-                    <td>Inglês - GoFluent (1h) / Programação - Dio Global (1h)</td>
-                    <td><input type="checkbox"></td>
-                </tr>
-                <!-- Repita para os outros dias da semana -->
-            </tbody>
-        </table>
+        <div class="content">
+            <section id="schedule-section">
+                <h2>Cronograma</h2>
+                <table id="schedule">
+                    <thead>
+                        <tr>
+                            <th>Data</th>
+                            <th>Dia</th>
+                            <th>Atividade</th>
+                            <th>Plataforma</th>
+                            <th>Carga Horária</th>
+                            <th>Conclusão</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <!-- As atividades serão adicionadas aqui dinamicamente -->
+                    </tbody>
+                </table>
+            </section>
+
+            <section id="completed-section">
+                <h2>Concluídos</h2>
+                <table id="completed">
+                    <thead>
+                        <tr>
+                            <th>Data</th>
+                            <th>Dia</th>
+                            <th>Atividade</th>
+                            <th>Plataforma</th>
+                            <th>Carga Horária</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <!-- As atividades concluídas aparecerão aqui -->
+                    </tbody>
+                </table>
+            </section>
+        </div>
     </main>
+
+    <!-- Modal para adicionar nova matéria -->
+    <div id="add-subject-modal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h2>Adicionar Nova Matéria</h2>
+            <form id="add-subject-form">
+                <label for="date">Data:</label>
+                <input type="date" id="date" required>
+                
+                <label for="day">Dia:</label>
+                <input type="text" id="day" required>
+
+                <label for="activity">Atividade:</label>
+                <input type="text" id="activity" required>
+
+                <label for="platform">Plataforma:</label>
+                <input type="text" id="platform" required>
+
+                <label for="hours">Carga Horária (em horas):</label>
+                <input type="number" id="hours" min="0.5" step="0.5" required>
+
+                <button type="submit">Adicionar</button>
+            </form>
+        </div>
+    </div>
 
     <footer>
         <p>&copy; 2024 Cronograma de Estudos</p>
