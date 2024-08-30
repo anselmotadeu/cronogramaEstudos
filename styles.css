@@ -298,3 +298,26 @@ footer {
     border-color: #0056b3;
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
 }
+
+#progress-reports h2 {
+    text-align: center;
+    font-size: 24px;
+    margin-bottom: 20px;
+    color: #333;
+}
+
+.charts-container {
+    display: flex;
+    justify-content: center; /* Centraliza os gráficos horizontalmente */
+    gap: 10px; /* Reduz o espaçamento entre os gráficos */
+    align-items: center; /* Garante que os gráficos fiquem alinhados na mesma altura */
+    flex-wrap: wrap; /* Permite que os gráficos se ajustem em telas menores */
+    padding: 20px 0; /* Adiciona um pouco de espaçamento vertical */
+}
+
+.charts-container canvas {
+    width: 100%;
+    max-width: 300px; /* Ajusta a largura máxima dos gráficos */
+    height: 300px; /* Define uma altura fixa para evitar distorções */
+}
+

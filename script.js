@@ -64,6 +64,7 @@ document.addEventListener("DOMContentLoaded", function() {
     const completedTableBody = document.querySelector("#completed tbody");
 
     document.getElementById("search-bar").addEventListener("input", filterActivities);
+    generateProgressReports(); // Gera os gráficos de progresso
 
     // Não mostrar notificação de teste aqui ainda
     // showNotification('Teste de Notificação', 'Se você está vendo isso, as notificações estão funcionando!');
@@ -318,5 +319,116 @@ document.addEventListener("DOMContentLoaded", function() {
         } else {
             return minuteText;
         }
-    }               
+    } 
+    
+    function generateProgressReports() {
+        const activities = getActivitiesFromStorage();
+    
+        const platforms = {};
+        const tasksByDate = {};
+    
+        activities.forEach(activity => {
+            // Contabilizar horas por plataforma
+            const [hours, minutes] = parseTime(activity.hours);
+            const totalMinutes = (hours * 60) + minutes;
+    
+            if (!platforms[activity.platform]) {
+                platforms[activity.platform] = 0;
+            }
+            platforms[activity.platform] += totalMinutes;
+    
+            // Contabilizar tarefas por data
+            if (!tasksByDate[activity.date]) {
+                tasksByDate[activity.date] = 0;
+            }
+            tasksByDate[activity.date]++;
+        });
+    
+        // Ordenar as datas em ordem crescente
+        const sortedDates = Object.keys(tasksByDate).sort((a, b) => new Date(a.split('/').reverse().join('-')) - new Date(b.split('/').reverse().join('-')));
+    
+        // Criar gráfico de horas por plataforma
+        const ctx1 = document.getElementById('hoursChart').getContext('2d');
+        new Chart(ctx1, {
+            type: 'bar',
+            data: {
+                labels: Object.keys(platforms),
+                datasets: [{
+                    label: 'Horas por Plataforma',
+                    data: Object.values(platforms).map(minutes => minutes / 60),
+                    backgroundColor: '#007bff'
+                }]
+            },
+            options: {
+                maintainAspectRatio: false,
+                scales: {
+                    y: {
+                        beginAtZero: true,
+                        title: {
+                            display: true,
+                            text: 'Horas'
+                        }
+                    },
+                    x: {
+                        title: {
+                            display: true,
+                            text: 'Plataformas'
+                        }
+                    }
+                },
+                plugins: {
+                    legend: {
+                        display: false
+                    },
+                    title: {
+                        display: true,
+                        text: 'Distribuição de Horas por Plataforma'
+                    }
+                }
+            }
+        });
+    
+        // Criar gráfico de tarefas por data
+        const ctx2 = document.getElementById('tasksChart').getContext('2d');
+        new Chart(ctx2, {
+            type: 'line',
+            data: {
+                labels: sortedDates,
+                datasets: [{
+                    label: 'Tarefas por Dia',
+                    data: sortedDates.map(date => tasksByDate[date]),
+                    backgroundColor: '#28a745',
+                    borderColor: '#28a745',
+                    fill: false
+                }]
+            },
+            options: {
+                maintainAspectRatio: false,
+                scales: {
+                    y: {
+                        beginAtZero: true,
+                        title: {
+                            display: true,
+                            text: 'Número de Tarefas'
+                        }
+                    },
+                    x: {
+                        title: {
+                            display: true,
+                            text: 'Data'
+                        }
+                    }
+                },
+                plugins: {
+                    legend: {
+                        display: false
+                    },
+                    title: {
+                        display: true,
+                        text: 'Tarefas Completas ao Longo do Tempo'
+                    }
+                }
+            }
+        });
+    }              
 });
