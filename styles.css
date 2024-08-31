@@ -321,3 +321,28 @@ footer {
     height: 300px; /* Define uma altura fixa para evitar distorções */
 }
 
+#progress-section {
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+#progress-bar-container {
+    width: 100%;
+    background-color: #ddd;
+    border-radius: 25px;
+    overflow: hidden;
+    height: 30px;
+    margin: 0 auto;
+    max-width: 600px; /* Controla a largura máxima da barra */
+}
+
+#progress-bar {
+    height: 100%;
+    width: 0;
+    background-color: red; /* Começa com a cor vermelha para baixo de 20% */
+    border-radius: 25px;
+    text-align: center;
+    line-height: 30px; /* Centraliza o texto verticalmente */
+    color: white;
+    transition: width 0.5s ease, background-color 0.5s ease;
+}

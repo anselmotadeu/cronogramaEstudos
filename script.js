@@ -65,6 +65,7 @@ document.addEventListener("DOMContentLoaded", function() {
 
     document.getElementById("search-bar").addEventListener("input", filterActivities);
     generateProgressReports(); // Gera os gráficos de progresso
+    updateProgressBar();
 
     // Não mostrar notificação de teste aqui ainda
     // showNotification('Teste de Notificação', 'Se você está vendo isso, as notificações estão funcionando!');
@@ -110,6 +111,8 @@ document.addEventListener("DOMContentLoaded", function() {
         const activity = document.getElementById("activity").value;
         const platform = document.getElementById("platform").value; 
         const hours = document.getElementById("hours").value;
+
+        updateProgressBar(); // Atualizar a barra de progresso após adicionar uma nova atividade
 
         // Formatar a data para o formato DD/MM/AAAA
         const formattedDate = new Date(date + 'T00:00:00').toLocaleDateString('pt-BR', {
@@ -208,6 +211,7 @@ document.addEventListener("DOMContentLoaded", function() {
     function updateActivityInStorage() {
         const allActivities = [];
         const rows = document.querySelectorAll("#schedule tbody tr, #completed tbody tr");
+        updateProgressBar(); // Atualizar a barra de progresso após concluir/retirar a conclusão de uma atividade
 
         rows.forEach(row => {
             const activityData = {
@@ -430,5 +434,31 @@ document.addEventListener("DOMContentLoaded", function() {
                 }
             }
         });
-    }              
+    }
+    
+    function updateProgressBar() {
+        const activities = getActivitiesFromStorage();
+        const totalTasks = activities.length;
+        const completedTasks = activities.filter(activity => activity.completed).length;
+    
+        const progressPercentage = totalTasks > 0 ? (completedTasks / totalTasks) * 100 : 0;
+    
+        const progressBar = document.getElementById('progress-bar');
+        progressBar.style.width = `${progressPercentage}%`;
+        progressBar.textContent = `${Math.round(progressPercentage)}%`;
+    
+        // Alterar a cor da barra de acordo com o percentual
+        if (progressPercentage >= 80) {
+            progressBar.style.backgroundColor = 'green';
+        } else if (progressPercentage >= 60) {
+            progressBar.style.backgroundColor = 'yellow';
+            progressBar.style.color = 'black'; // Mudar o texto para preto em fundo amarelo
+        } else if (progressPercentage >= 20) {
+            progressBar.style.backgroundColor = 'orange';
+            progressBar.style.color = 'white'; // Mudar o texto para branco em fundo laranja
+        } else {
+            progressBar.style.backgroundColor = 'red';
+            progressBar.style.color = 'white'; // Mudar o texto para branco em fundo vermelho
+        }
+    }
 });
