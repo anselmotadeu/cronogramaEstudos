@@ -1,130 +1,133 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Cronograma de Estudos</title>
-    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="styles.css" />
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-</head>
-<body>
+  </head>
+  <body>
     <header>
-        <h1>Cronograma de Estudos</h1>
-        <button id="add-subject-btn">Adicionar Matéria</button>
+      <h1>Cronograma de Estudos</h1>
+      <button id="add-subject-btn">Adicionar Matéria</button>
     </header>
 
     <section id="dashboard">
-        <div class="card">
-            <div class="card-icon">⏱️</div>
-            <div class="card-title">Total de Horas Estudadas</div>
-            <div class="card-value" id="total-hours">0 horas</div>
-        </div>
-        <div class="card">
-            <div class="card-icon">✅</div>
-            <div class="card-title">Atividades Concluídas</div>
-            <div class="card-value" id="completed-tasks">0</div>
-        </div>
-        <div class="card">
-            <div class="card-icon">📅</div>
-            <div class="card-title">Atividades Pendente</div>
-            <div class="card-value" id="pending-tasks">0</div>
-        </div>
-        <div class="card" style="width: 100%;">
-            <div class="card-title">Tempo por Plataforma</div>
-            <ul id="platform-time">
-                <!-- Conteúdo gerado dinamicamente -->
-            </ul>
-        </div>
-    </section>    
+      <div class="card">
+        <div class="card-icon">⏱️</div>
+        <div class="card-title">Total de Horas Estudadas</div>
+        <div class="card-value" id="total-hours">0 horas</div>
+      </div>
+      <div class="card">
+        <div class="card-icon">✅</div>
+        <div class="card-title">Atividades Concluídas</div>
+        <div class="card-value" id="completed-tasks">0</div>
+      </div>
+      <div class="card">
+        <div class="card-icon">📅</div>
+        <div class="card-title">Atividades Pendente</div>
+        <div class="card-value" id="pending-tasks">0</div>
+      </div>
+      <div class="card" style="width: 100%">
+        <div class="card-title">Tempo por Plataforma</div>
+        <ul id="platform-time">
+          <!-- Conteúdo gerado dinamicamente -->
+        </ul>
+      </div>
+    </section>
 
     <main>
-        
-        <section id="progress-section">
-            <h3>Progresso das Atividades</h3>
-            <div id="progress-bar-container">
-                <div id="progress-bar"></div>
-            </div>
+      <section id="progress-section">
+        <h3>Progresso das Atividades</h3>
+        <div id="progress-bar-container">
+          <div id="progress-bar"></div>
+        </div>
+      </section>
+
+      <div class="content">
+        <section id="schedule-section">
+          <h2>Cronograma</h2>
+          <input
+            type="text"
+            id="search-bar"
+            placeholder="Pesquisar atividades..."
+          />
+          <table id="schedule">
+            <thead>
+              <tr>
+                <th>Data</th>
+                <th>Dia</th>
+                <th>Atividade</th>
+                <th>Plataforma</th>
+                <th>Carga Horária</th>
+                <th>Conclusão</th>
+              </tr>
+            </thead>
+            <tbody>
+              <!-- As atividades serão adicionadas aqui dinamicamente -->
+            </tbody>
+          </table>
         </section>
 
-        <div class="content">
-            <section id="schedule-section">
-                <h2>Cronograma</h2>
-                <input type="text" id="search-bar" placeholder="Pesquisar atividades...">
-                <table id="schedule">
-                    <thead>
-                        <tr>
-                            <th>Data</th>
-                            <th>Dia</th>
-                            <th>Atividade</th>
-                            <th>Plataforma</th>
-                            <th>Carga Horária</th>
-                            <th>Conclusão</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <!-- As atividades serão adicionadas aqui dinamicamente -->
-                    </tbody>
-                </table>
-            </section>          
-
-            <section id="completed-section">
-                <h2>Concluídos</h2>
-                <table id="completed">
-                    <thead>
-                        <tr>
-                            <th>Data</th>
-                            <th>Dia</th>
-                            <th>Atividade</th>
-                            <th>Plataforma</th>
-                            <th>Carga Horária</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <!-- As atividades concluídas aparecerão aqui -->
-                    </tbody>
-                </table>
-            </section>
-        </div>
+        <section id="completed-section">
+          <h2>Concluídos</h2>
+          <table id="completed">
+            <thead>
+              <tr>
+                <th>Data</th>
+                <th>Dia</th>
+                <th>Atividade</th>
+                <th>Plataforma</th>
+                <th>Carga Horária</th>
+              </tr>
+            </thead>
+            <tbody>
+              <!-- As atividades concluídas aparecerão aqui -->
+            </tbody>
+          </table>
+        </section>
+      </div>
     </main>
 
     <section id="progress-reports">
-        <h2>Relatórios de Progresso</h2>
-        <div class="charts-container">
-            <canvas id="hoursChart"></canvas>
-            <canvas id="tasksChart"></canvas>
-        </div>
-    </section>      
+      <h2>Relatórios de Progresso</h2>
+      <div class="charts-container">
+        <canvas id="hoursChart"></canvas>
+        <canvas id="tasksChart"></canvas>
+      </div>
+    </section>
 
     <!-- Modal para adicionar nova matéria -->
     <div id="add-subject-modal" class="modal">
-        <div class="modal-content">
-            <span class="close">&times;</span>
-            <h2>Adicionar Nova Matéria</h2>
-            <form id="add-subject-form">
-                <label for="date">Data:</label>
-                <input type="date" id="date" required>
-                
-                <label for="day">Dia:</label>
-                <input type="text" id="day" readonly>
+      <div class="modal-content">
+        <span class="close">&times;</span>
+        <h2>Adicionar Nova Matéria</h2>
+        <form id="add-subject-form">
+          <label for="date">Data:</label>
+          <input type="date" id="date" required />
 
-                <label for="activity">Atividade:</label>
-                <input type="text" id="activity" required>
+          <label for="day">Dia:</label>
+          <input type="text" id="day" readonly />
 
-                <label for="platform">Plataforma:</label>
-                <input type="text" id="platform" required>
+          <label for="activity">Atividade:</label>
+          <input type="text" id="activity" required />
 
-                <label for="hours">Carga Horária (em horas):</label>
-                <input type="number" id="hours" min="0.5" step="0.5" required>
+          <label for="platform">Plataforma:</label>
+          <input type="text" id="platform" required />
 
-                <button type="submit">Adicionar</button>
-            </form>
-        </div>
+          <label for="hours">Carga Horária (em horas):</label>
+          <input type="number" id="hours" min="0.5" step="0.5" required />
+
+          <button type="submit">Adicionar</button>
+        </form>
+      </div>
     </div>
 
     <footer>
-        <p>&copy; 2024 Cronograma de Estudos</p>
+      <p>&copy; 2024 Cronograma de Estudos</p>
     </footer>
 
     <script src="script.js"></script>
-</body>
+  </body>
 </html>
