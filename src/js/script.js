@@ -1,4 +1,6 @@
-//import Chart from 'chart.js';
+//import ChartDataLabels from 'chartjs-plugin-datalabels';
+
+//Chart.register(ChartDataLabels);
 
 // Solicitar permissão para notificações
 if (Notification.permission === 'default') {
@@ -279,8 +281,12 @@ document.addEventListener('DOMContentLoaded', function DOMContentLoaded() {
     let hourText = h === 1 ? `${h} hora` : `${h} horas`;
     let minuteText = m === 1 ? `${m} minuto` : `${m} minutos`;
 
-    if (h === 0) {hourText = '';}
-    if (m === 0) {minuteText = '';}
+    if (h === 0) {
+      hourText = '';
+    }
+    if (m === 0) {
+      minuteText = '';
+    }
 
     if (hourText && minuteText) {
       return `${hourText} e ${minuteText}`;
@@ -345,8 +351,12 @@ document.addEventListener('DOMContentLoaded', function DOMContentLoaded() {
     let hourText = hours === 1 ? `${hours} hora` : `${hours} horas`;
     let minuteText = minutes === 1 ? `${minutes} minuto` : `${minutes} minutos`;
 
-    if (hours === 0) {hourText = '';}
-    if (minutes === 0) {minuteText = '';}
+    if (hours === 0) {
+      hourText = '';
+    }
+    if (minutes === 0) {
+      minuteText = '';
+    }
 
     if (hourText && minuteText) {
       return `${hourText} e ${minuteText}`;
@@ -477,6 +487,56 @@ document.addEventListener('DOMContentLoaded', function DOMContentLoaded() {
       },
     });
   }
+
+  // Exemplo de configuração de gráfico de barras com rótulos
+  // eslint-disable-next-line no-unused-vars, no-undef
+  const barChart = new Chart(document.getElementById('barChart'), {
+    type: 'bar',
+    data: {
+      labels: ['GoFluent', 'Dio Global'],
+      datasets: [
+        {
+          label: 'Horas por Plataforma',
+          data: [4, 8.5],
+          backgroundColor: ['#007bff', '#28a745'],
+          borderColor: ['#0056b3', '#1e7e34'],
+          borderWidth: 1,
+        },
+      ],
+    },
+    options: {
+      responsive: true,
+      plugins: {
+        legend: {
+          display: true,
+        },
+        tooltip: {
+          enabled: true,
+        },
+        datalabels: {
+          anchor: 'end',
+          align: 'end',
+          color: '#444',
+          font: {
+            weight: 'bold',
+          },
+          formatter: function (value) {
+            return value + 'h';
+          },
+        },
+      },
+      scales: {
+        y: {
+          beginAtZero: true,
+          ticks: {
+            callback: function (value) {
+              return value + 'h';
+            },
+          },
+        },
+      },
+    },
+  });
 
   function updateProgressBar() {
     const activities = getActivitiesFromStorage();

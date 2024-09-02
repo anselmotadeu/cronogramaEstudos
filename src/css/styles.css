@@ -72,7 +72,8 @@ table {
 }
 
 /* Estilos para cabeçalhos (th) e células (td) das tabelas */
-th, td {
+th,
+td {
   border: 1px solid #ddd;
   padding: 8px;
   text-align: left;
@@ -85,12 +86,14 @@ th {
 }
 
 /* Estilo para as checkboxes dentro da tabela */
-input[type="checkbox"] {
-  transition: transform 0.2s ease, background-color 0.2s ease;
+input[type='checkbox'] {
+  transition:
+    transform 0.2s ease,
+    background-color 0.2s ease;
 }
 
 /* Efeito de clique nos checkboxes */
-input[type="checkbox"]:checked {
+input[type='checkbox']:checked {
   transform: scale(1.2);
 }
 
@@ -98,7 +101,12 @@ input[type="checkbox"]:checked {
 
 /* Tornar a tabela responsiva para telas menores */
 @media (max-width: 600px) {
-  table, thead, tbody, th, td, tr {
+  table,
+  thead,
+  tbody,
+  th,
+  td,
+  tr {
     display: block;
     width: 100%;
   }
@@ -125,11 +133,21 @@ input[type="checkbox"]:checked {
   }
 
   /* Labels específicas para cada coluna da tabela */
-  td:nth-of-type(1)::before { content: 'Data'; }
-  td:nth-of-type(2)::before { content: 'Dia'; }
-  td:nth-of-type(3)::before { content: 'Atividade'; }
-  td:nth-of-type(4)::before { content: 'Carga Horária'; }
-  td:nth-of-type(5)::before { content: 'Conclusão'; }
+  td:nth-of-type(1)::before {
+    content: 'Data';
+  }
+  td:nth-of-type(2)::before {
+    content: 'Dia';
+  }
+  td:nth-of-type(3)::before {
+    content: 'Atividade';
+  }
+  td:nth-of-type(4)::before {
+    content: 'Carga Horária';
+  }
+  td:nth-of-type(5)::before {
+    content: 'Conclusão';
+  }
 }
 
 /* Estilos para o Modal de Adicionar Atividades */
@@ -168,7 +186,8 @@ input[type="checkbox"]:checked {
 }
 
 /* Alteração de cor ao passar o mouse no botão de fechar o modal */
-.close:hover, .close:focus {
+.close:hover,
+.close:focus {
   color: black;
   text-decoration: none;
   cursor: pointer;
@@ -415,29 +434,33 @@ footer {
     background-color 0.5s ease;
 
   /* Aumentar a largura da barra gradualmente */
-@keyframes fillProgressBar {
-  from {
-    width: 0;
+  @keyframes fillProgressBar {
+    from {
+      width: 0;
+    }
+    to {
+      width: var(--progress-width);
+    }
   }
-  to {
-    width: var(--progress-width);
+
+  /* Animação nos Botões */
+  button,
+  #add-subject-btn {
+    transition:
+      background-color 0.3s ease,
+      transform 0.3s ease;
   }
-}
 
-/* Animação nos Botões */
-button, #add-subject-btn {
-  transition: background-color 0.3s ease, transform 0.3s ease;
-}
+  /* Efeito de hover nos botões */
+  button:hover,
+  #add-subject-btn:hover {
+    background-color: #0056b3;
+    transform: scale(1.05);
+  }
 
-/* Efeito de hover nos botões */
-button:hover, #add-subject-btn:hover {
-  background-color: #0056b3;
-  transform: scale(1.05);
-}
-
-/* Efeito de clique nos botões */
-button:active, #add-subject-btn:active {
-  transform: scale(0.95);
-}
-
+  /* Efeito de clique nos botões */
+  button:active,
+  #add-subject-btn:active {
+    transform: scale(0.95);
+  }
 }
