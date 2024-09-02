@@ -85,9 +85,13 @@ th {
 }
 
 /* Estilo para as checkboxes dentro da tabela */
-input[type='checkbox'] {
-  width: 20px;
-  height: 20px;
+input[type="checkbox"] {
+  transition: transform 0.2s ease, background-color 0.2s ease;
+}
+
+/* Efeito de clique nos checkboxes */
+input[type="checkbox"]:checked {
+  transform: scale(1.2);
 }
 
 /* Estilos Responsivos para Tabelas em Telas Pequenas */
@@ -409,4 +413,31 @@ footer {
   transition:
     width 0.5s ease,
     background-color 0.5s ease;
+
+  /* Aumentar a largura da barra gradualmente */
+@keyframes fillProgressBar {
+  from {
+    width: 0;
+  }
+  to {
+    width: var(--progress-width);
+  }
+}
+
+/* Animação nos Botões */
+button, #add-subject-btn {
+  transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+/* Efeito de hover nos botões */
+button:hover, #add-subject-btn:hover {
+  background-color: #0056b3;
+  transform: scale(1.05);
+}
+
+/* Efeito de clique nos botões */
+button:active, #add-subject-btn:active {
+  transform: scale(0.95);
+}
+
 }
