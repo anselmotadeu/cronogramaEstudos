@@ -1,32 +1,34 @@
+import Chart from 'chart.js';
+
 // Solicitar permissão para notificações
 if (Notification.permission === 'default') {
   Notification.requestPermission().then((permission) => {
     if (permission === 'granted') {
-      console.log('Notificações permitidas');
+      //console.log('Notificações permitidas');
       // Exibir uma notificação de teste após a permissão ser concedida
       new Notification('Permissão Concedida', {
         body: 'Agora você receberá notificações!',
         icon: 'https://via.placeholder.com/128', // Substitua por um ícone personalizado, se desejar
       });
     } else {
-      console.log('Permissão para notificações não foi concedida.');
+      //console.log('Permissão para notificações não foi concedida.');
     }
   });
 } else if (Notification.permission === 'granted') {
-  console.log('Notificações já estavam permitidas');
+  //console.log('Notificações já estavam permitidas');
 } else {
-  console.log('Permissão para notificações não foi concedida anteriormente.');
+  //console.log('Permissão para notificações não foi concedida anteriormente.');
 }
 
 function showNotification(title, body) {
   if (Notification.permission === 'granted') {
-    console.log('Tentando mostrar notificação:', title); // Log de depuração
+    //console.log('Tentando mostrar notificação:', title); // Log de depuração
     new Notification(title, {
       body: body,
       icon: 'https://via.placeholder.com/128', // Substitua por um ícone personalizado, se desejar
     });
   } else {
-    console.log('Permissão para notificações não foi concedida.');
+    //console.log('Permissão para notificações não foi concedida.');
   }
 }
 
@@ -49,7 +51,7 @@ function filterActivities() {
     const dayText = row
       .querySelector('td:nth-child(2)')
       .textContent.toLowerCase();
-    const statusText = row.querySelector("input[type='checkbox']").checked
+    const statusText = row.querySelector('input[type=\'checkbox\']').checked
       ? 'concluída'
       : 'pendente';
 
@@ -67,7 +69,7 @@ function filterActivities() {
   });
 }
 
-document.addEventListener('DOMContentLoaded', function () {
+document.addEventListener('DOMContentLoaded', function DOMContentLoaded() {
   const addSubjectBtn = document.getElementById('add-subject-btn');
   const modal = document.getElementById('add-subject-modal');
   const closeModalBtn = document.querySelector('.close');
@@ -88,7 +90,7 @@ document.addEventListener('DOMContentLoaded', function () {
   const dayInput = document.getElementById('day');
 
   // Atualizar o campo "Dia" automaticamente quando o usuário escolher uma data
-  dateInput.addEventListener('change', function () {
+  dateInput.addEventListener('change', function addEventListener() {
     const selectedDate = new Date(dateInput.value + 'T00:00:00');
     const options = { weekday: 'long' };
     const dayOfWeek = selectedDate.toLocaleDateString('pt-BR', options);
@@ -103,21 +105,21 @@ document.addEventListener('DOMContentLoaded', function () {
   // Carregar as atividades salvas ao iniciar a aplicação
   loadActivities();
 
-  addSubjectBtn.addEventListener('click', function () {
+  addSubjectBtn.addEventListener('click', function addEventListener() {
     modal.style.display = 'block';
   });
 
-  closeModalBtn.addEventListener('click', function () {
+  closeModalBtn.addEventListener('click', function addEventListener() {
     modal.style.display = 'none';
   });
 
-  window.addEventListener('click', function (event) {
-    if (event.target == modal) {
+  window.addEventListener('click', function addEventListener(event) {
+    if (event.target === modal) {
       modal.style.display = 'none';
     }
   });
 
-  addSubjectForm.addEventListener('submit', function (event) {
+  addSubjectForm.addEventListener('submit', function addEventListener(event) {
     event.preventDefault();
 
     const date = document.getElementById('date').value;
@@ -175,8 +177,8 @@ document.addEventListener('DOMContentLoaded', function () {
         `;
 
     row
-      .querySelector("input[type='checkbox']")
-      .addEventListener('change', function () {
+      .querySelector('input[type=\'checkbox\']')
+      .addEventListener('change', function addEventListener() {
         activityData.completed = this.checked;
         updateActivityInStorage();
         if (this.checked) {
@@ -277,8 +279,8 @@ document.addEventListener('DOMContentLoaded', function () {
     let hourText = h === 1 ? `${h} hora` : `${h} horas`;
     let minuteText = m === 1 ? `${m} minuto` : `${m} minutos`;
 
-    if (h === 0) hourText = '';
-    if (m === 0) minuteText = '';
+    if (h === 0) {hourText = '';}
+    if (m === 0) {minuteText = '';}
 
     if (hourText && minuteText) {
       return `${hourText} e ${minuteText}`;
@@ -298,7 +300,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
     activities.forEach((activity) => {
       const [hours, minutes] = parseTime(activity.hours);
-      const totalTimeInMinutes = hours * 60 + minutes;
+      const totalTimeInMinutes = (hours * 60) + minutes;
       totalMinutes += totalTimeInMinutes;
 
       if (activity.completed) {
@@ -343,8 +345,8 @@ document.addEventListener('DOMContentLoaded', function () {
     let hourText = hours === 1 ? `${hours} hora` : `${hours} horas`;
     let minuteText = minutes === 1 ? `${minutes} minuto` : `${minutes} minutos`;
 
-    if (hours === 0) hourText = '';
-    if (minutes === 0) minuteText = '';
+    if (hours === 0) {hourText = '';}
+    if (minutes === 0) {minuteText = '';}
 
     if (hourText && minuteText) {
       return `${hourText} e ${minuteText}`;
@@ -364,7 +366,7 @@ document.addEventListener('DOMContentLoaded', function () {
     activities.forEach((activity) => {
       // Contabilizar horas por plataforma
       const [hours, minutes] = parseTime(activity.hours);
-      const totalMinutes = hours * 60 + minutes;
+      const totalMinutes = (hours * 60) + minutes;
 
       if (!platforms[activity.platform]) {
         platforms[activity.platform] = 0;

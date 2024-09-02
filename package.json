@@ -4,7 +4,9 @@
   "description": "Aplicação criada com foco na organização dos estudos",
   "main": "index.js",
   "scripts": {
-    "format": "prettier --write ."
+    "format": "prettier --write .",
+    "lint": "npx eslint .",
+    "lint:fix": "npx eslint . --fix"
   },
   "repository": {
     "type": "git",
@@ -17,6 +19,10 @@
   },
   "homepage": "https://github.com/anselmotadeu/cronogramaEstudos#readme",
   "devDependencies": {
+    "@eslint/js": "^9.9.1",
+    "eslint": "^9.9.1",
+    "eslint-config-prettier": "^9.1.0",
+    "globals": "^15.9.0",
     "prettier": "^3.3.3"
   }
 }
