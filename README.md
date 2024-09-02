@@ -64,7 +64,7 @@ Implementar notificações para lembrar o usuário de tarefas pendentes ou recé
 **Clone o repositório:**
 
 ```bash
-git clone https://github.com/seu-usuario/nome-do-repositorio.git
+git clone https://github.com/anselmotadeu/cronogramaEstudos
 ```
 
 Abra o arquivo `index.html` em um navegador para acessar a aplicação.
@@ -73,10 +73,10 @@ Abra o arquivo `index.html` em um navegador para acessar a aplicação.
 
 ### Tecnologias Utilizadas
 
-- HTML5: Para a estruturação da aplicação.
-- CSS3: Para a estilização, incluindo a responsividade.
-- JavaScript: Para a lógica da aplicação, manipulação do DOM, e persistência de dados via LocalStorage.
-- Chart.js: Para a criação dos gráficos interativos.
+- **HTML5**: Para a estruturação da aplicação.
+- **CSS3:** Para a estilização, incluindo a responsividade.
+- **JavaScript**: Para a lógica da aplicação, manipulação do DOM, e persistência de dados via LocalStorage.
+- **Chart.js:** Para a criação dos gráficos interativos.
 
 ### Contribuições
 
