@@ -8,7 +8,7 @@
       "type": "chrome",
       "request": "launch",
       "name": "Iniciar o Chrome em relação a localhost",
-      "url": "file:///Users/anselmo.filho/Documents/cronogramaEstudos/index.html",
+      "url": "file:/Users/anselmo.filho/Documents/cronogramaEstudos/src/index.html",
       "webRoot": "${workspaceFolder}"
     }
   ]

@@ -1,5 +1,6 @@
-/* styles.css */
+/* Estilos Globais para a Aplicação */
 
+/* Definições básicas de fonte, margens e preenchimento */
 body {
   font-family: Arial, sans-serif;
   margin: 0;
@@ -9,6 +10,9 @@ body {
   min-height: 100vh;
 }
 
+/* Estilos para o Cabeçalho */
+
+/* Estilo básico do header, incluindo fundo azul e texto branco */
 header {
   background-color: #007bff;
   color: white;
@@ -17,11 +21,13 @@ header {
   position: relative;
 }
 
+/* Estilo do título dentro do header */
 header h1 {
   margin: 0;
   font-size: 24px;
 }
 
+/* Estilo do botão para adicionar atividades */
 #add-subject-btn {
   background-color: #007bff;
   color: white;
@@ -36,69 +42,76 @@ header h1 {
   transform: translateY(-50%);
 }
 
+/* Alteração de cor ao passar o mouse no botão */
 #add-subject-btn:hover {
   background-color: #0056b3;
 }
 
+/* Estilos para o Conteúdo Principal */
+
+/* Estilo para o elemento main, responsável pelo conteúdo central da página */
 main {
   flex: 1;
   padding: 20px;
 }
 
+/* Estilo para organização dos elementos dentro do conteúdo principal */
 .content {
   display: flex;
   flex-direction: column;
   gap: 20px;
 }
 
-h2 {
-  margin-top: 0;
-}
+/* Estilos para as Tabelas */
 
+/* Estilos globais para todas as tabelas */
 table {
   width: 100%;
   border-collapse: collapse;
   margin-bottom: 20px;
 }
 
-th,
-td {
+/* Estilos para cabeçalhos (th) e células (td) das tabelas */
+th, td {
   border: 1px solid #ddd;
   padding: 8px;
   text-align: left;
 }
 
+/* Estilo do cabeçalho da tabela */
 th {
   background-color: #007bff;
   color: white;
 }
 
+/* Estilo para as checkboxes dentro da tabela */
 input[type='checkbox'] {
   width: 20px;
   height: 20px;
 }
 
+/* Estilos Responsivos para Tabelas em Telas Pequenas */
+
+/* Tornar a tabela responsiva para telas menores */
 @media (max-width: 600px) {
-  table,
-  thead,
-  tbody,
-  th,
-  td,
-  tr {
+  table, thead, tbody, th, td, tr {
     display: block;
     width: 100%;
   }
 
+  /* Margem entre linhas da tabela em dispositivos pequenos */
   tr {
     margin-bottom: 15px;
   }
 
+  /* Estilo das células da tabela em dispositivos pequenos */
   td {
     text-align: right;
     padding-left: 50%;
     position: relative;
   }
 
+  /* Adiciona labels antes das células da tabela em dispositivos pequenos */
   td::before {
     content: attr(data-label);
     position: absolute;
@@ -107,24 +120,17 @@ input[type='checkbox'] {
     font-weight: bold;
   }
 
-  td:nth-of-type(1)::before {
-    content: 'Data';
-  }
-  td:nth-of-type(2)::before {
-    content: 'Dia';
-  }
-  td:nth-of-type(3)::before {
-    content: 'Atividade';
-  }
-  td:nth-of-type(4)::before {
-    content: 'Carga Horária';
-  }
-  td:nth-of-type(5)::before {
-    content: 'Conclusão';
-  }
+  /* Labels específicas para cada coluna da tabela */
+  td:nth-of-type(1)::before { content: 'Data'; }
+  td:nth-of-type(2)::before { content: 'Dia'; }
+  td:nth-of-type(3)::before { content: 'Atividade'; }
+  td:nth-of-type(4)::before { content: 'Carga Horária'; }
+  td:nth-of-type(5)::before { content: 'Conclusão'; }
 }
 
-/* Modal Styles */
+/* Estilos para o Modal de Adicionar Atividades */
+
+/* Estilos para o fundo do modal */
 .modal {
   display: none;
   position: fixed;
@@ -138,6 +144,7 @@ input[type='checkbox'] {
   padding-top: 60px;
 }
 
+/* Estilos para o conteúdo do modal */
 .modal-content {
   background-color: #fefefe;
   margin: 5% auto;
@@ -148,6 +155,7 @@ input[type='checkbox'] {
   border-radius: 5px;
 }
 
+/* Estilos para o botão de fechar o modal */
 .close {
   color: #aaa;
   float: right;
@@ -155,18 +163,22 @@ input[type='checkbox'] {
   font-weight: bold;
 }
 
-.close:hover,
-.close:focus {
+/* Alteração de cor ao passar o mouse no botão de fechar o modal */
+.close:hover, .close:focus {
   color: black;
   text-decoration: none;
   cursor: pointer;
 }
 
+/* Estilos para Formulários */
+
+/* Estilo para labels dos formulários */
 form label {
   display: block;
   margin: 10px 0 5px;
 }
 
+/* Estilo para inputs dos formulários */
 form input {
   width: calc(100% - 20px);
   padding: 10px;
@@ -175,6 +187,7 @@ form input {
   border-radius: 5px;
 }
 
+/* Estilo para botões dos formulários */
 form button {
   background-color: #28a745;
   color: white;
@@ -185,10 +198,14 @@ form button {
   border-radius: 5px;
 }
 
+/* Alteração de cor ao passar o mouse no botão dos formulários */
 form button:hover {
   background-color: #218838;
 }
 
+/* Estilos para o Rodapé */
+
+/* Estilo básico para o footer */
 footer {
   background-color: #007bff;
   color: white;
@@ -196,6 +213,7 @@ footer {
   padding: 10px 0;
 }
 
+/* Ajustes para o botão de adicionar atividades */
 #add-subject-btn {
   background-color: #007bff;
   color: white;
@@ -210,18 +228,21 @@ footer {
   transform: translateY(-50%);
 }
 
+/* Ajuste de cor da borda ao passar o mouse */
 #add-subject-btn:hover {
   background-color: #0056b3;
   border-color: #004085; /* Mudança na borda ao passar o mouse */
 }
 
+/* Estilo para o campo de data somente leitura */
 #day[readonly] {
   background-color: #e9ecef;
   cursor: not-allowed;
 }
 
-/* Adicione este código ao final do styles.css */
+/* Dashboard (Cartões e Estatísticas) */
 
+/* Contêiner principal do dashboard */
 #dashboard {
   display: flex;
   flex-wrap: wrap;
@@ -232,6 +253,7 @@ footer {
   margin-bottom: 20px;
 }
 
+/* Estilo dos cartões no dashboard */
 .card {
   flex: 1 1 calc(33.333% - 20px);
   background-color: #ffffff;
@@ -245,24 +267,28 @@ footer {
   text-align: center;
 }
 
+/* Estilo dos ícones nos cartões do dashboard */
 .card-icon {
   font-size: 40px;
   color: #007bff;
   margin-bottom: 10px;
 }
 
+/* Título dos cartões do dashboard */
 .card-title {
   font-size: 18px;
   font-weight: bold;
   color: #333333;
 }
 
+/* Valor exibido nos cartões do dashboard */
 .card-value {
   font-size: 24px;
   font-weight: bold;
   color: #007bff;
 }
 
+/* Lista de tempo por plataforma no dashboard */
 #platform-time {
   width: 100%;
   list-style-type: none;
@@ -270,6 +296,7 @@ footer {
   margin: 0;
 }
 
+/* Estilo dos itens da lista de tempo por plataforma */
 #platform-time li {
   background-color: #e9ecef;
   padding: 10px;
@@ -280,24 +307,31 @@ footer {
   align-items: center;
 }
 
+/* Estilo para o texto dos itens da lista de tempo por plataforma */
 #platform-time li span {
   font-weight: bold;
   color: #007bff;
 }
 
+/* Ajustes para telas menores no dashboard */
+
+/* Ajuste de tamanho dos cartões em telas menores */
 @media (max-width: 768px) {
   .card {
     flex: 1 1 calc(50% - 20px);
   }
 }
 
+/* Ajuste de tamanho dos cartões em telas muito pequenas */
 @media (max-width: 480px) {
   .card {
     flex: 1 1 100%;
   }
 }
 
-/* Estilo da barra de pesquisa */
+/* Estilo da Barra de Pesquisa */
+
+/* Estilo para a barra de pesquisa */
 #search-bar {
   width: 100%;
   max-width: 400px;
@@ -311,11 +345,15 @@ footer {
   transition: all 0.3s ease-in-out;
 }
 
+/* Estilo ao focar na barra de pesquisa */
 #search-bar:focus {
   border-color: #0056b3;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
 }
 
+/* Estilos para os Relatórios de Progresso */
+
+/* Estilo do título da seção de relatórios de progresso */
 #progress-reports h2 {
   text-align: center;
   font-size: 24px;
@@ -323,6 +361,7 @@ footer {
   color: #333;
 }
 
+/* Contêiner para os gráficos */
 .charts-container {
   display: flex;
   justify-content: center; /* Centraliza os gráficos horizontalmente */
@@ -332,17 +371,22 @@ footer {
   padding: 20px 0; /* Adiciona um pouco de espaçamento vertical */
 }
 
+/* Estilo dos elementos canvas dos gráficos */
 .charts-container canvas {
   width: 100%;
   max-width: 300px; /* Ajusta a largura máxima dos gráficos */
   height: 300px; /* Define uma altura fixa para evitar distorções */
 }
 
+/* Barra de Progresso das Atividades */
+
+/* Contêiner para a seção de progresso */
 #progress-section {
   margin-bottom: 20px;
   text-align: center;
 }
 
+/* Contêiner para a barra de progresso */
 #progress-bar-container {
   width: 100%;
   background-color: #ddd;
@@ -353,6 +397,7 @@ footer {
   max-width: 600px; /* Controla a largura máxima da barra */
 }
 
+/* Estilo da barra de progresso */
 #progress-bar {
   height: 100%;
   width: 0;
