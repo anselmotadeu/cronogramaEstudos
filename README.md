@@ -2,6 +2,12 @@
 
 > Este projeto é uma aplicação web para ajudar a gerenciar e monitorar o progresso dos estudos. A ferramenta permite que você adicione, edite e visualize suas atividades de estudo, além de acompanhar o progresso por meio de gráficos e uma barra de progresso dinâmica.
 
+## Estrutura de Pastas
+
+Abaixo está a estrutura de pastas do projeto:
+
+![Estrutura de Pastas](src/assets/estruturaProjeto.png)
+
 ## Funcionalidades
 
 ### 1. **Adicionar Atividades**
