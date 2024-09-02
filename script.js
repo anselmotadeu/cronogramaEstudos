@@ -1,4 +1,4 @@
-import Chart from 'chart.js';
+//import Chart from 'chart.js';
 
 // Solicitar permissão para notificações
 if (Notification.permission === 'default') {
@@ -389,6 +389,7 @@ document.addEventListener('DOMContentLoaded', function DOMContentLoaded() {
 
     // Criar gráfico de horas por plataforma
     const ctx1 = document.getElementById('hoursChart').getContext('2d');
+    // eslint-disable-next-line no-undef
     new Chart(ctx1, {
       type: 'bar',
       data: {
@@ -432,6 +433,7 @@ document.addEventListener('DOMContentLoaded', function DOMContentLoaded() {
 
     // Criar gráfico de tarefas por data
     const ctx2 = document.getElementById('tasksChart').getContext('2d');
+    // eslint-disable-next-line no-undef
     new Chart(ctx2, {
       type: 'line',
       data: {
