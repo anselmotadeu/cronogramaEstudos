@@ -78,6 +78,27 @@ document.addEventListener('DOMContentLoaded', function DOMContentLoaded() {
   const addSubjectForm = document.getElementById('add-subject-form');
   const scheduleTableBody = document.querySelector('#schedule tbody');
   const completedTableBody = document.querySelector('#completed tbody');
+  const donateLink = document.getElementById('donate-link');
+  const qrModal = document.getElementById('qr-modal');
+  const qrCloseModal = document.getElementById('qr-close');
+
+  // Quando o usuário clicar no link, abrir o modal
+  donateLink.addEventListener('click', function addEventListener(event) {
+    event.preventDefault();
+    qrModal.style.display = 'block';
+  });
+
+  // Quando o usuário clicar no X, fechar o modal
+  qrCloseModal.addEventListener('click', function addEventListener() {
+    qrModal.style.display = 'none';
+  });
+
+  // Quando o usuário clicar fora do modal, fechar também
+  window.addEventListener('click', function addEventListener(event) {
+    if (event.target === qrModal) {
+      qrModal.style.display = 'none';
+    }
+  });
 
   document
     .getElementById('search-bar')
