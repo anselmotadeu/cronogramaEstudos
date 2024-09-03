@@ -464,3 +464,37 @@ footer {
     transform: scale(0.95);
   }
 }
+
+/* Footer Styles */
+footer {
+  background-color: #007bff;
+  color: white;
+  text-align: center;
+  padding: 5px 0; /* Reduz ainda mais o padding */
+  margin-top: 10px; /* Ajuste de margem superior */
+  line-height: 1.5; /* Ajuste o line-height para reduzir o espaçamento */
+  position: relative;
+  width: 100%;
+  bottom: 0;
+  left: 0;
+}
+
+.footer-content {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 10px;
+}
+
+.footer-content p {
+  margin: 5px 0;
+}
+
+.footer-content a {
+  color: #ffffff;
+  text-decoration: none;
+  margin: 0 10px;
+}
+
+.footer-content a:hover {
+  text-decoration: underline;
+}
